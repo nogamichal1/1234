@@ -1,0 +1,23 @@
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Company {
+  CompanyId               Int      @id @default(autoincrement())
+  CompanyName             String   @db.VarChar(255)
+  CompanyVat              String   @unique @db.VarChar(32)
+  CompanyCountry          String   @db.VarChar(100)
+  CompanyZip              String   @db.VarChar(20)
+  CompanyCity             String   @db.VarChar(100)
+  CompanyAddress          String   @db.VarChar(255)
+  CompanyRegistrationDate DateTime @db.Date
+  Users                   Int      @default(0)
+  CreatedAt               DateTime @default(now())
+  UpdatedAt               DateTime @updatedAt
+}
